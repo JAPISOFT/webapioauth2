@@ -20,7 +20,7 @@ namespace OAuthWebApi
         }
 
         /// <summary>
-        /// SetUp authorization server
+        /// Setup authorization server
         /// </summary>
         private void ConfigureOAuth(IAppBuilder app)
         {

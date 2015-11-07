@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
+using OAuthWebApi.Models;
 
 namespace OAuthWebApi
 {
@@ -16,15 +17,15 @@ namespace OAuthWebApi
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            if (!(context.UserName == "adrianne" && context.Password == "password"))
+            if (context.Password != "password")
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
 
             ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim(ClaimTypes.Role, "admin"));
-            identity.AddClaim(new Claim(ClaimTypes.Name, "adrianne"));
+            identity.AddClaim(new Claim(ClaimTypes.Role, RoleName.Admin));
+            identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
 
             context.Validated(new AuthenticationTicket(identity, new AuthenticationProperties{}));
         }

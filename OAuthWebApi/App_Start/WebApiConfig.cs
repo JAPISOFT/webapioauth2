@@ -17,17 +17,13 @@ namespace OAuthWebApi
 
             config.EnsureInitialized();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            config.Routes.MapHttpRoute(name: "DefaultApi", routeTemplate: "api/{controller}/{id}", defaults: new { id = RouteParameter.Optional });
 
             RegisterFormatters(config.Formatters);
         }
 
         /// <summary>
-        /// Media formatters settings
+        /// Media formatter settings
         /// </summary>
         private static void RegisterFormatters(MediaTypeFormatterCollection formatters)
         {

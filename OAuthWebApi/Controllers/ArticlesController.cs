@@ -5,7 +5,7 @@ using OAuthWebApi.Models;
 
 namespace OAuthWebApi.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = RoleName.Admin)]
     public class ArticlesController : ApiController
     {
         public HttpResponseMessage Get()
